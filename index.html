@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slok Kumar | Software Developer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#0f172a;
+    --card:#1e293b;
+    --text:#ffffff;
+    --accent:#38bdf8;
+}
+
+body.light{
+    --bg:#f1f5f9;
+    --card:#ffffff;
+    --text:#0f172a;
+    --accent:#2563eb;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    transition:0.4s;
+    overflow-x:hidden;
+}
+
+header{
+    position:fixed;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    padding:20px 50px;
+    background:rgba(0,0,0,0.3);
+    backdrop-filter:blur(10px);
+    z-index:1000;
+}
+
+nav a{
+    margin-left:20px;
+    text-decoration:none;
+    color:var(--text);
+    font-weight:500;
+}
+
+nav a:hover{
+    color:var(--accent);
+}
+
+.toggle-btn{
+    cursor:pointer;
+    background:var(--accent);
+    padding:6px 15px;
+    border-radius:20px;
+    color:white;
+    border:none;
+}
+
+section{
+    padding:120px 10%;
+    min-height:100vh;
+}
+
+.hero{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:50px;
+}
+
+.typing{
+    color:var(--accent);
+    font-weight:600;
+    border-right:3px solid var(--accent);
+    white-space:nowrap;
+    overflow:hidden;
+}
+
+.card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+    margin-top:40px;
+}
+
+.card{
+    background:var(--card);
+    padding:25px;
+    border-radius:15px;
+    transition:0.4s;
+    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.gameverse-logo{
+    font-size:40px;
+    font-weight:700;
+    color:var(--accent);
+    animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 10px var(--accent);}
+    to{ text-shadow:0 0 25px var(--accent);}
+}
+
+/* Cricket animation */
+.cricket{
+    text-align:center;
+    font-size:30px;
+}
+
+.ball{
+    display:inline-block;
+    animation:bounce 1s infinite;
+}
+
+@keyframes bounce{
+    0%{ transform:translateY(0);}
+    50%{ transform:translateY(-20px);}
+    100%{ transform:translateY(0);}
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:var(--card);
+}
+
+.fade{
+    opacity:0;
+    transform:translateY(30px);
+    transition:1s;
+}
+
+.fade.show{
+    opacity:1;
+    transform:translateY(0);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h2>Slok Kumar</h2>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#startup">Startup</a>
+        <a href="#cricket">Cricket</a>
+        <button class="toggle-btn" onclick="toggleTheme()">Toggle</button>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Hi, I'm Slok Kumar</h1>
+    <h2 class="typing" id="typing"></h2>
+</section>
+
+<section id="about" class="fade">
+    <h2>About Me</h2>
+    <p>
+        I am a Software Developer and student at Jawahar Navodaya Vidyalaya, Siwan, Bihar.
+        I specialize in Website, App, and Game Development.
+        I build scalable, creative, and impactful digital products.
+    </p>
+</section>
+
+<section id="skills" class="fade">
+    <h2>Technical Skills</h2>
+    <div class="card-grid">
+        <div class="card">HTML / CSS / JavaScript</div>
+        <div class="card">App Development</div>
+        <div class="card">Game Development</div>
+        <div class="card">Software Engineering</div>
+        <div class="card">UI / UX Design</div>
+        <div class="card">Problem Solving & Algorithms</div>
+    </div>
+</section>
+
+<section id="startup" class="fade">
+    <h2>My Startup</h2>
+    <div class="gameverse-logo">🎮 GAMEVERSE</div>
+    <p>
+        Gameverse is my startup focused on game innovation,
+        immersive digital platforms and empowering young developers.
+    </p>
+</section>
+
+<section id="cricket" class="fade">
+    <h2>Professional Gully Cricket Player 🏏</h2>
+    <div class="cricket">
+        <span class="ball">🏏</span>
+    </div>
+    <p>
+        Cricket teaches leadership, strategy, focus and teamwork —
+        qualities I apply in software development.
+    </p>
+</section>
+
+<footer>
+    © 2026 Slok Kumar | Built Like a Pro Developer 🚀
+</footer>
+
+<script>
+// Typing Animation
+const roles=["Software Developer","Web Developer","App Developer","Game Developer","Startup Founder"];
+let i=0;
+let j=0;
+let current="";
+let isDeleting=false;
+
+function type(){
+    current=roles[i];
+    if(!isDeleting){
+        document.getElementById("typing").textContent=current.slice(0,++j);
+        if(j==current.length) isDeleting=true;
+    }else{
+        document.getElementById("typing").textContent=current.slice(0,--j);
+        if(j==0){
+            isDeleting=false;
+            i=(i+1)%roles.length;
+        }
+    }
+    setTimeout(type,100);
+}
+type();
+
+// Theme Toggle
+function toggleTheme(){
+    document.body.classList.toggle("light");
+}
+
+// Scroll Reveal
+const faders=document.querySelectorAll(".fade");
+window.addEventListener("scroll",()=>{
+    faders.forEach(el=>{
+        const rect=el.getBoundingClientRect();
+        if(rect.top<window.innerHeight-100){
+            el.classList.add("show");
+        }
+    });
+});
+</script>
+
+</body>
+</html>
